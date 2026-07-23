@@ -22,7 +22,7 @@ const Login = () => {
             .then(result => {
                 // setUser(result.user)
                 const firebaseUser = result.user;
-                // setToken(result.user.accessToken)
+                console.log(result.user.accessToken)
                 axios.get(`http://localhost:3000/users/${email}`)
                     .then(res => {
                         const dbUser = res.data
@@ -33,7 +33,10 @@ const Login = () => {
                         if (dbUser.role !== role) {
                             return alert("Wrong login portal");
                         }
-                        setUser(dbUser)
+                        const usetWithToken = {
+                            ...dbUser, accessToken: firebaseUser.accessToken
+                        }
+                        setUser(usetWithToken)
                         navigate(`/`)
                         e.target.reset();
                     })

@@ -11,9 +11,10 @@ const Appoinment = () => {
     console.log(token)
     const handleApponment = (e) => {
         e.preventDefault();
-        if(!token){
+        if (!user?.accessToken) {
             return alert("you are not valid user")
         }
+
         const name = e.target.name.value;
         const email = e.target.email.value;
         const number = e.target.number.value;
@@ -35,6 +36,7 @@ const Appoinment = () => {
             .catch(err => {
                 console.log(err)
             })
+
 
 
     }
