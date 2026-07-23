@@ -23,12 +23,10 @@ const News = () => {
         <div className="max-w-7xl mx-auto px-5 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
 
-                {/* Left */}
-                <div className="lg:col-span-3 max-w-3xl">
-                    {/* Blog Cards */}
-                    {/* {news.length} */}
+                <div className="lg:col-span-3 max-w-3xl ">
+
                     {
-                        allNews.map(news => <div className="bg-white rounded-lg overflow-hidden shadow hover:shadow-xl duration-300">
+                        allNews.map(news => <div className="bg-white rounded-lg m-5 overflow-hidden shadow hover:shadow-xl duration-300">
 
                             {/* Image */}
                             <img
@@ -88,7 +86,6 @@ const News = () => {
 
                 {/* Right */}
                 <div className="space-y-8">
-                    {/* Search */}
                     <div className="bg-btn2 rounded-md p-3 flex items-center">
                         <input
                             type="text"

@@ -10,7 +10,7 @@ const Home = () => {
             <h1 className='text-primary text-sm lg:text-2xl font-bold '>Caring for Life</h1>
             <h1 className='text-secondary w-200 text-2xl pb-8 lg:pb-16 lg:text-5xl'>Leading the Way <br/>
                 in Medical Excellence</h1>
-            <button className='btn p-2 px-3 text-secondary bg-btn1 rounded-3xl'>Our services</button>
+            <NavLink to="/services" className='btn p-2 px-3 text-secondary bg-btn1 rounded-3xl'>Our services</NavLink>
             <div className='flex gap-7 mt-8 '>
                 <NavLink to="/appoinment" className='bg-btn2 rounded-md text-white flex items-center gap-12 p-6'>
                     <h1>Book an Appointment</h1>

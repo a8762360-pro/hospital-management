@@ -8,6 +8,7 @@ import axios from 'axios';
 const AuthProvider = ({ children }) => {
     // const [ user, setUser ] = useState(null);
     const [ user, setUser ] = useState(null);
+    const [token, setToken] = useState("");
 
     const [ loading, setLoading ] = useState(true)
     const createUser = (email, password) => {
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const AuthValue = {
-        createUser, numberPassLogin, loading, setLoading, user, setUser, logOut
+        createUser, numberPassLogin, loading, setLoading, user, setUser, logOut, token, setToken
     }
     return (
         <AuthContext value={AuthValue}>

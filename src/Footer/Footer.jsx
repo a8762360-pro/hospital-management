@@ -5,10 +5,11 @@ import {
     FaInstagram,
     FaPaperPlane,
 } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 const Footer = () => {
     return (
-        <footer className="bg-[#1F2B6C] text-white">
+        <footer className="bg-btn2 text-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -17,7 +18,7 @@ const Footer = () => {
                     <div>
                         <h2 className="text-4xl font-bold">
                             <span className="text-white">MED</span>
-                            <span className="text-[#159EEC]">IN</span>
+                            <span className="text-accent">IN</span>
                         </h2>
 
                         <p className="mt-5 text-gray-300 leading-7 text-sm">
@@ -33,19 +34,13 @@ const Footer = () => {
                             Important Links
                         </h3>
 
-                        <ul className="space-y-3 text-gray-300">
-                            <li>
-                                <a href="#">Appointment</a>
-                            </li>
-                            <li>
-                                <a href="#">Doctors</a>
-                            </li>
-                            <li>
-                                <a href="#">Services</a>
-                            </li>
-                            <li>
-                                <a href="#">About Us</a>
-                            </li>
+                        <ul className="space-y-3 text-gray-300 flex flex-col">
+
+                            <NavLink to="/appoinment" >Appointment</NavLink>
+                            <NavLink to="/doctors" >Doctors</NavLink>
+                            <NavLink to="/services" >Services</NavLink>
+                            <NavLink to="aboutus" >About Us</NavLink>
+
                         </ul>
                     </div>
 
@@ -56,9 +51,9 @@ const Footer = () => {
                         </h3>
 
                         <div className="space-y-3 text-gray-300">
-                            <p>Call: (+254) 717 783 146</p>
-                            <p>Email: medin@gmail.com</p>
-                            <p>Address: 0123 Some place</p>
+                            <p>Call: 01837097197</p>
+                            <p>Email: a8762360@gmail.com</p>
+                            <p>Address: Mirpur-11, Dhaka</p>
                             <p>Some country</p>
                         </div>
                     </div>
@@ -69,15 +64,15 @@ const Footer = () => {
                             Newsletter
                         </h3>
 
-                        <div className="flex bg-[#BFD2F8] rounded-md overflow-hidden">
+                        <div className="flex bg-btn1 rounded-md overflow-hidden">
 
                             <input
                                 type="email"
                                 placeholder="Enter your email address"
-                                className="bg-transparent px-4 py-3 w-full outline-none text-[#1F2B6C] placeholder:text-[#44517c]"
+                                className="bg-transparent px-4 py-3 w-full outline-none text-secondary placeholder:text-[#44517c]"
                             />
 
-                            <button className="px-5 text-[#1F2B6C] hover:bg-[#9fc0ff] duration-300">
+                            <button className="px-5 text-secondary hover:bg-[#9fc0ff] duration-300">
                                 <FaPaperPlane />
                             </button>
 
@@ -89,28 +84,28 @@ const Footer = () => {
                 <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-5">
 
                     <p className="text-sm text-gray-300 text-center md:text-left">
-                        © 2021 MEDIN All Rights Reserved by knhs
+                        © 2026 MEDIN All Rights Reserved by knhs
                     </p>
 
                     <div className="flex items-center gap-3">
 
                         <a
                             href="#"
-                            className="w-9 h-9 rounded-full bg-[#BFD2F8] text-[#1F2B6C] flex items-center justify-center hover:scale-110 duration-300"
+                            className="w-9 h-9 rounded-full bg-btn1 text-secondary flex items-center justify-center hover:scale-110 duration-300"
                         >
                             <FaLinkedinIn />
                         </a>
 
                         <a
                             href="#"
-                            className="w-9 h-9 rounded-full bg-[#BFD2F8] text-[#1F2B6C] flex items-center justify-center hover:scale-110 duration-300"
+                            className="w-9 h-9 rounded-full bg-btn1 text-secondary flex items-center justify-center hover:scale-110 duration-300"
                         >
                             <FaFacebookF />
                         </a>
 
                         <a
                             href="#"
-                            className="w-9 h-9 rounded-full bg-[#BFD2F8] text-[#1F2B6C] flex items-center justify-center hover:scale-110 duration-300"
+                            className="w-9 h-9 rounded-full bg-btn1 text-secondary flex items-center justify-center hover:scale-110 duration-300"
                         >
                             <FaInstagram />
                         </a>

@@ -9,12 +9,12 @@ const NavBar = () => {
         logOut();
     }
     const link = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "}> Home</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "} to="/aboutUs">About us</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "} to="/services">Services</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "} to="/doctors">Doctors</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "} to="/news">News</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 rounded-md "} to="/contact">Contact</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "}> Home</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "} to="/aboutUs">About us</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "} to="/services">Services</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "} to="/doctors">Doctors</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "} to="/news">News</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "} to="/contact">Contact</NavLink>
     </>
     return (
         <div className=''>
@@ -36,15 +36,15 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end flex justify-end">
-                        <input type="text" placeholder="Search" className="input input-bordered w-20 lg:w-64 text-black lg:w-auto" />
-                        <NavLink to="/appoinment" className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'>Appointment</NavLink>
+                        <input type="text" placeholder="Search" className="input input-bordered w-20 lg:w-54 text-black " />
+                        <NavLink to="/appoinment" className={({isActive})=> isActive ? 'bg-btn3 rounded-3xl text-white hidden lg:flex font-semibold p-2 ml-5': "bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5"}>Appointment</NavLink>
                         {
                             user ? <NavLink onClick={handleLogOut} className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'>Log out</NavLink> :
                                 <NavLink to="/loginPortal" className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'>Login</NavLink>
                         }
-                        <div className='w-40 flex justi'>
+                        <div className='ml-2 w-35'>
                             {
-                                user && <NavLink to="/dashbord" className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'> Dashbord</NavLink>
+                                user && <NavLink to="/dashbord" className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-3xl" : "px-4 py-2 hover:bg-btn1 hover:text-gray-500 bg-btn1 text-secondary rounded-3xl"}> Dashbord</NavLink>
                             }
                         </div>
 

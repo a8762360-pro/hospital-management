@@ -1,11 +1,25 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaCalendarCheck, FaFileMedical, FaUserInjured, FaNotesMedical, FaClock } from "react-icons/fa";
 import { AuthContext } from "../AuthContext/AuthContext";
+import axios from "axios";
+import { FaTrash } from "react-icons/fa";
+
 
 const PatientDashbord = () => {
-    const {user} = use(AuthContext)
+    const [ appointments, setAppoinments ] = useState([]);
+    console.log(appointments)
+    const { user } = use(AuthContext);
+    console.log(user)
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/appoinments/${user.email}`)
+            .then(res => {
+                console.log(res.data)
+                setAppoinments(res.data)
+            })
+    }, [])
     return (
-        <div className="bg-gray-100 min-h-screen max-w-7xl mx-auto p-8">
+        <div className="bg-gray-100 min-h-screen max-w-7xl mx-auto p-8 mb-10">
 
             {/* Header */}
             <div className="flex justify-between items-center mb-10">
@@ -24,7 +38,7 @@ const PatientDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Appointments</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">8</h2>
+                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">{appointments.length}</h2>
                         </div>
                         <div className="w-16 h-16 rounded-full bg-blue-100 flex justify-center items-center"><FaCalendarCheck className="text-3xl text-blue-600" /></div>
                     </div>
@@ -80,26 +94,22 @@ const PatientDashbord = () => {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Dr. James Carter</td>
-                                <td>25 Jul 2026</td>
-                                <td>10:00 AM</td>
-                                <td><span className="badge badge-warning">Pending</span></td>
-                            </tr>
+                            {
 
-                            <tr>
-                                <td>Dr. Emily Stone</td>
-                                <td>28 Jul 2026</td>
-                                <td>11:30 AM</td>
-                                <td><span className="badge badge-success">Approved</span></td>
-                            </tr>
+                                appointments.map(appoinment => <tr>
+                                    <td>{appoinment.doctor}</td>
+                                    <td>{appoinment.date}</td>
+                                    <td>{appoinment.time}</td>
+                                    <td><span className="badge badge-warning">Pending</span></td>
 
-                            <tr>
-                                <td>Dr. John Smith</td>
-                                <td>30 Jul 2026</td>
-                                <td>09:00 AM</td>
-                                <td><span className="badge badge-info">Completed</span></td>
-                            </tr>
+                                    <button className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg duration-300">
+                                        <FaTrash size={10} />
+                                        Delete
+                                    </button>
+                                </tr>)}
+
+
+
                         </tbody>
                     </table>
                 </div>
@@ -107,10 +117,10 @@ const PatientDashbord = () => {
                 {/* Patient Profile */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <div className="flex flex-col items-center">
-                        <img src="https://i.pravatar.cc/150?img=15" alt="" className="w-28 h-28 rounded-full border-4 border-blue-100" />
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.yYUwl3GDU07Q5J5ttyW9fQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" className="w-28 h-28 rounded-full border border-blue-100" />
 
-                        <h2 className="text-2xl font-bold text-[#1F2B6C] mt-5">Alomgir Islam</h2>
-                        <p className="text-gray-500">Patient</p>
+                        <h2 className="text-2xl font-bold text-[#1F2B6C] mt-5">{user.name}</h2>
+                        <p className="text-gray-500">{user.role}</p>
 
                         <div className="mt-8 w-full space-y-4">
                             <div className="flex justify-between">

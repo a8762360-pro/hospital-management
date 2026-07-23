@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     console.log(role)
-    const { numberPassLogin, user, setUser, } = use(AuthContext);
+    const { numberPassLogin, user, setUser, setToken} = use(AuthContext);
     console.log(user)
 
     const handleLogin = (e) => {
@@ -22,6 +22,7 @@ const Login = () => {
             .then(result => {
                 // setUser(result.user)
                 const firebaseUser = result.user;
+                // setToken(result.user.accessToken)
                 axios.get(`http://localhost:3000/users/${email}`)
                     .then(res => {
                         const dbUser = res.data

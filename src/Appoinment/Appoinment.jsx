@@ -1,13 +1,19 @@
 import axios from 'axios';
-import React from 'react';
+import React, { use, useEffect } from 'react';
 import {
     FaPhoneAlt,
     FaChevronDown,
 } from "react-icons/fa";
+import { AuthContext } from '../AuthContext/AuthContext';
 
 const Appoinment = () => {
+    const { user, token } = use(AuthContext);
+    console.log(token)
     const handleApponment = (e) => {
         e.preventDefault();
+        if(!token){
+            return alert("you are not valid user")
+        }
         const name = e.target.name.value;
         const email = e.target.email.value;
         const number = e.target.number.value;
@@ -23,12 +29,18 @@ const Appoinment = () => {
         }
         axios.post('http://localhost:3000/appoinments', newAppinment)
             .then(result => {
-                console.log(result.data)
+                console.log(result.data);
+                alert("your appointment submit to successfully")
             })
             .catch(err => {
                 console.log(err)
             })
+
+
     }
+    useEffect(() => {
+
+    }, [])
     return (
         <div>
             <h1 className='text-secondary pb-5 text-5xl text-center font-bold'>Our Doctors</h1>
@@ -78,7 +90,7 @@ const Appoinment = () => {
 
                                 <input name='email'
                                     type="email"
-                                    placeholder="Email"
+                                    placeholder="Email" defaultValue={user.email} readOnly
                                     className="bg-btn2 text-white placeholder:text-gray-300 border border-white/20 px-5 py-4 outline-none"
                                 />
 
