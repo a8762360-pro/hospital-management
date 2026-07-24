@@ -31,12 +31,12 @@ const AuthProvider = ({ children }) => {
 
             if (currentUser) {
                 const idToken = await getIdToken(currentUser);
-                console.log(idToken);
+                console.log(idToken)
                 const res = await axios.get(
                     `http://localhost:3000/users/${currentUser.email}`,
                     {
                         headers: {
-                            Authorization: `Bearer ${idToken}`
+                            authorization: `Bearer ${idToken}`
                         }
                     }
                 );

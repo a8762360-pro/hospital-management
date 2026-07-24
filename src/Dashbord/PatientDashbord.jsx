@@ -28,7 +28,7 @@ const PatientDashbord = () => {
                     <p className="text-gray-500 mt-2">Welcome back, {user.name}</p>
                 </div>
 
-                <img src="https://i.pravatar.cc/100?img=15" alt="" className="w-14 h-14 rounded-full border-4 border-white shadow" />
+                <img src="https://tse2.mm.bing.net/th/id/OIP.yYUwl3GDU07Q5J5ttyW9fQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" className="w-14 h-14 rounded-full  shadow" />
             </div>
 
             {/* Cards */}

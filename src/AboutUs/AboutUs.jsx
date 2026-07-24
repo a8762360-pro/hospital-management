@@ -163,6 +163,7 @@ const AboutUs = () => {
             </div>
             {/* doctors  */}
             {/* doctors  */}
+            <h1>doctors</h1>
             <div className="carousel carousel-center my-4 lg:my-10 rounded-box max-w-5xl mx-auto flex">
                 {
                     doctors.map(doctor =>
