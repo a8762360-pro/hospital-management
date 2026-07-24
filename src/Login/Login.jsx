@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     console.log(role)
-    const { numberPassLogin, user, setUser, setToken} = use(AuthContext);
+    const { numberPassLogin, user, setUser, setToken } = use(AuthContext);
     console.log(user)
 
     const handleLogin = (e) => {
@@ -20,9 +20,6 @@ const Login = () => {
 
         numberPassLogin(email, password)
             .then(result => {
-                // setUser(result.user)
-                const firebaseUser = result.user;
-                console.log(result.user.accessToken)
                 axios.get(`http://localhost:3000/users/${email}`)
                     .then(res => {
                         const dbUser = res.data
@@ -33,11 +30,9 @@ const Login = () => {
                         if (dbUser.role !== role) {
                             return alert("Wrong login portal");
                         }
-                        const usetWithToken = {
-                            ...dbUser, accessToken: firebaseUser.accessToken
-                        }
-                        setUser(usetWithToken)
-                        navigate(`/`)
+
+                        setUser(dbUser)
+                        navigate("/")
                         e.target.reset();
                     })
             })

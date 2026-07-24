@@ -8,12 +8,12 @@ import { AuthContext } from '../AuthContext/AuthContext';
 
 const Appoinment = () => {
     const { user, token } = use(AuthContext);
-    console.log(token)
+    console.log( user)
     const handleApponment = (e) => {
         e.preventDefault();
-        if (!user?.accessToken) {
-            return alert("you are not valid user")
-        }
+        // if (!user?.accessToken) {
+        //     return alert("you are not valid user")
+        // }
 
         const name = e.target.name.value;
         const email = e.target.email.value;

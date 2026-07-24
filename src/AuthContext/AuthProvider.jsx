@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getIdToken, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase/Firebase.config';
 import { AuthContext } from './AuthContext';
@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     // const [ user, setUser ] = useState(null);
     const [ user, setUser ] = useState(null);
     const [token, setToken] = useState("");
+    console.log(user)
 
     const [ loading, setLoading ] = useState(true)
     const createUser = (email, password) => {
@@ -29,8 +30,15 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
 
             if (currentUser) {
+                const idToken = await getIdToken(currentUser);
+                console.log(idToken);
                 const res = await axios.get(
-                    `http://localhost:3000/users/${currentUser.email}`
+                    `http://localhost:3000/users/${currentUser.email}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${idToken}`
+                        }
+                    }
                 );
 
                 setUser(res.data);
