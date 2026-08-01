@@ -40,7 +40,7 @@ const Services = () => {
                     CARE YOU CAN TRUST
                 </p>
 
-                <h1 className="text-5xl font-bold text-[#1F2B6C] mt-3">
+                <h1 className="text-5xl font-bold text-secondary mt-3">
                     Our Services
                 </h1>
             </div>
@@ -87,76 +87,6 @@ const Services = () => {
                 })}
             </div>
             <section className="max-w-7xl mx-auto px-5 py-20">
-
-                <div className="text-center mb-14">
-                    <p className="uppercase tracking-[4px] text-primary font-bold">
-                        GET IN TOUCH
-                    </p>
-
-                    <h2 className="text-5xl font-bold text-[#1F2B6C] mt-2">
-                        Contact
-                    </h2>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    {/* Emergency */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300">
-
-                        <FiPhoneCall size={34} />
-
-                        <h2 className="font-bold text-xl mt-6 mb-5">
-                            EMERGENCY
-                        </h2>
-
-                        <p>(+254) 717 783 146</p>
-                        <p>(+254) 717 783 147</p>
-
-                    </div>
-
-                    {/* Location */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300">
-
-                        <FiMapPin size={34} />
-
-                        <h2 className="font-bold text-xl mt-6 mb-5">
-                            LOCATION
-                        </h2>
-
-                        <p>0123 Some Place</p>
-                        <p>9876 Some Country</p>
-
-                    </div>
-
-                    {/* Email */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300bg-[#BFD2F8] rounded-md p-8 text-[#1F2B6C] hover:bg-[#1F2B6C] hover:text-white duration-300">
-
-                        <FiMail size={34} />
-
-                        <h2 className="font-bold text-xl mt-6 mb-5">
-                            EMAIL
-                        </h2>
-
-                        <p>dnx@gmail.com</p>
-                        <p>medin@gmail.com</p>
-
-                    </div>
-
-                    {/* Working Hours */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300bg-[#BFD2F8] rounded-md p-8 text-[#1F2B6C] hover:bg-btn2 hover:text-white duration-300">
-
-                        <FiClock size={34} />
-
-                        <h2 className="font-bold text-xl mt-6 mb-5">
-                            WORKING HOURS
-                        </h2>
-
-                        <p>Mon-Sat 09:00-20:00</p>
-                        <p>Sunday Emergency Only</p>
-
-                    </div>
-
-                </div>
 
             </section>
         </section>

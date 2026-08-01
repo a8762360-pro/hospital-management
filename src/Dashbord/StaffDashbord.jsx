@@ -1,18 +1,20 @@
-import React from "react";
+import React, { use } from "react";
 import { FaCalendarCheck, FaUsers, FaClipboardList, FaMoneyBillWave, FaUserTie } from "react-icons/fa";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 const StaffDashbord = () => {
+    const {user} = use(AuthContext)
     return (
         <div className="bg-gray-100 min-h-screen max-w-7xl mx-auto p-8">
 
             {/* Header */}
             <div className="flex justify-between items-center mb-10">
                 <div>
-                    <h1 className="text-4xl font-bold text-[#1F2B6C]">Staff Dashboard</h1>
-                    <p className="text-gray-500 mt-2">Welcome back, Staff Member.</p>
+                    <h1 className="text-4xl font-bold text-secondary">Staff Dashboard</h1>
+                    <p className="text-gray-500 mt-2">Welcome back, {user.name}</p>
                 </div>
 
-                <img src="https://i.pravatar.cc/100?img=18" alt="" className="w-14 h-14 rounded-full border-4 border-white shadow" />
+                <img src="https://tse1.mm.bing.net/th/id/OIP.AU95kxQp8k56iYJ79O7MVAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" className="w-14 h-14 rounded-full  border-white shadow" />
             </div>
 
             {/* Statistics */}
@@ -22,7 +24,7 @@ const StaffDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Today's Patients</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">42</h2>
+                            <h2 className="text-4xl font-bold text-secondary mt-2">42</h2>
                         </div>
                         <div className="w-16 h-16 rounded-full bg-blue-100 flex justify-center items-center"><FaUsers className="text-3xl text-blue-600" /></div>
                     </div>
@@ -32,7 +34,7 @@ const StaffDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Appointments</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">26</h2>
+                            <h2 className="text-4xl font-bold text-secondary mt-2">26</h2>
                         </div>
                         <div className="w-16 h-16 rounded-full bg-green-100 flex justify-center items-center"><FaCalendarCheck className="text-3xl text-green-600" /></div>
                     </div>
@@ -42,7 +44,7 @@ const StaffDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Pending Bills</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">15</h2>
+                            <h2 className="text-4xl font-bold text-secondary mt-2">15</h2>
                         </div>
                         <div className="w-16 h-16 rounded-full bg-yellow-100 flex justify-center items-center"><FaMoneyBillWave className="text-3xl text-yellow-600" /></div>
                     </div>
@@ -52,7 +54,7 @@ const StaffDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Tasks</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">9</h2>
+                            <h2 className="text-4xl font-bold text-secondary mt-2">9</h2>
                         </div>
                         <div className="w-16 h-16 rounded-full bg-purple-100 flex justify-center items-center"><FaClipboardList className="text-3xl text-purple-600" /></div>
                     </div>
@@ -65,7 +67,7 @@ const StaffDashbord = () => {
 
                 {/* Patient List */}
                 <div className="lg:col-span-2 bg-white rounded-xl shadow p-6">
-                    <h2 className="text-2xl font-bold text-[#1F2B6C] mb-6">Today's Patient List</h2>
+                    <h2 className="text-2xl font-bold text-secondary mb-6">Today's Patient List</h2>
 
                     <table className="table w-full">
                         <thead>
@@ -105,9 +107,9 @@ const StaffDashbord = () => {
                 {/* Staff Profile */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <div className="flex flex-col items-center">
-                        <img src="https://i.pravatar.cc/150?img=18" alt="" className="w-28 h-28 rounded-full border-4 border-blue-100" />
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.AU95kxQp8k56iYJ79O7MVAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="" className="w-28 h-28 rounded-full" />
 
-                        <h2 className="text-2xl font-bold text-[#1F2B6C] mt-5">Sarah Wilson</h2>
+                        <h2 className="text-2xl font-bold text-secondary mt-5">{user.name}</h2>
                         <p className="text-gray-500">Reception Staff</p>
 
                         <div className="mt-8 w-full space-y-4">

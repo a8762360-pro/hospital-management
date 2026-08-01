@@ -80,90 +80,162 @@ const AboutUs = () => {
                     </div>
                 </div>
             </section>
-            <div className="carousel w-full">
+            <div className="carousel w-full rounded-2xl overflow-hidden">
 
                 {/* Slide 1 */}
                 <div
                     id="slide1"
-                    className="carousel-item relative w-full h-[450px] bg-cover bg-center"
-                    style={{ backgroundImage: `url(${doctorTalk})` }}
+                    className="carousel-item relative w-full h-[550px]"
                 >
-                    <div className="absolute inset-0 bg-btn2/75"></div>
+                    <img
+                        src={doctorTalk}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt=""
+                    />
 
-                    <div className="relative z-10 flex flex-col items-center justify-center w-full text-center px-6">
-                        <h1 className="max-w-3xl text-white text-xl lg:text-3xl leading-relaxed">
-                            "From the moment I arrived, the staff treated me with kindness and professionalism. The doctors explained every step of my treatment clearly, and I felt safe and cared for throughout my recovery."
-                        </h1>
+                    <div className="absolute inset-0 bg-[#1F2B6C]/70"></div>
 
-                        <h2 className="mt-8 text-2xl font-bold text-white">
-                            — Sarah Johnson
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 text-center">
+                        <div className="text-7xl text-white mb-6">❝</div>
+
+                        <p className="max-w-3xl text-lg md:text-xl text-white leading-9">
+                            From the moment I arrived, the staff treated me with kindness and professionalism.
+                            The doctors explained every step of my treatment clearly, and I felt safe and cared
+                            for throughout my recovery.
+                        </p>
+
+                        <div className="w-24 h-[2px] bg-white my-7"></div>
+
+                        <h2 className="text-2xl font-bold text-white">
+                            Sarah Johnson
                         </h2>
 
-                        <p className="text-primary">Heart Patient</p>
+                        <p className="text-primary mt-2">
+                            Heart Patient
+                        </p>
                     </div>
 
-                    <div className="absolute left-5 right-5 top-1/2 flex justify-between -translate-y-1/2">
-                        <a href="#slide3" className="btn btn-circle">❮</a>
-                        <a href="#slide2" className="btn btn-circle">❯</a>
-                    </div>
+                    <a
+                        href="#slide3"
+                        className="btn btn-circle absolute left-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❮
+                    </a>
+
+                    <a
+                        href="#slide2"
+                        className="btn btn-circle absolute right-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❯
+                    </a>
                 </div>
 
                 {/* Slide 2 */}
                 <div
                     id="slide2"
-                    className="carousel-item relative w-full h-[450px] bg-cover bg-center"
-                    style={{ backgroundImage: `url(${doctorTalk})` }}
+                    className="carousel-item relative w-full h-[550px]"
                 >
-                    <div className="absolute inset-0 bg-btn2/75"></div>
+                    <img
+                        src={doctorTalk}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt=""
+                    />
 
-                    <div className="relative z-10 flex flex-col items-center justify-center w-full text-center px-6">
-                        <h1 className="max-w-3xl text-white text-xl lg:text-3xl leading-relaxed">
-                            "The medical team provided exceptional care during my surgery. The facilities were clean, the nurses were incredibly supportive, and my recovery was faster than I expected. Thank you for making such a stressful time much easier."
-                        </h1>
+                    <div className="absolute inset-0 bg-[#1F2B6C]/70"></div>
 
-                        <h2 className="mt-8 text-2xl font-bold text-white">
-                            — Michael Brown
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 text-center">
+                        <div className="text-7xl text-white mb-6">❝</div>
+
+                        <p className="max-w-3xl text-lg md:text-xl text-white leading-9">
+                            The medical team provided exceptional care during my surgery.
+                            The facilities were clean and the nurses were incredibly supportive.
+                        </p>
+
+                        <div className="w-24 h-[2px] bg-white my-7"></div>
+
+                        <h2 className="text-2xl font-bold text-white">
+                            Michael Brown
                         </h2>
 
-                        <p className="text-primary">Orthopedic Patient</p>
+                        <p className="text-primary mt-2">
+                            Orthopedic Patient
+                        </p>
                     </div>
 
-                    <div className="absolute left-5 right-5 top-1/2 flex justify-between -translate-y-1/2">
-                        <a href="#slide1" className="btn btn-circle">❮</a>
-                        <a href="#slide3" className="btn btn-circle">❯</a>
-                    </div>
+                    <a
+                        href="#slide1"
+                        className="btn btn-circle absolute left-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❮
+                    </a>
+
+                    <a
+                        href="#slide3"
+                        className="btn btn-circle absolute right-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❯
+                    </a>
                 </div>
 
                 {/* Slide 3 */}
                 <div
                     id="slide3"
-                    className="carousel-item relative w-full h-[450px] bg-cover bg-center"
-                    style={{ backgroundImage: `url(${doctorTalk})` }}
+                    className="carousel-item relative w-full h-[550px]"
                 >
-                    <div className="absolute inset-0 bg-btn2/75"></div>
+                    <img
+                        src={doctorTalk}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt=""
+                    />
 
-                    <div className="relative z-10 flex flex-col items-center justify-center w-full text-center px-6">
-                        <h1 className="max-w-3xl text-white text-xl lg:text-3xl leading-relaxed">
-                            "I had an excellent experience at this hospital. The appointment process was simple, the doctors were knowledgeable, and the entire staff was friendly and attentive."
-                        </h1>
+                    <div className="absolute inset-0 bg-[#1F2B6C]/70"></div>
 
-                        <h2 className="mt-8 text-2xl font-bold text-white">
-                            — Emily Davis
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 text-center">
+                        <div className="text-7xl text-white mb-6">❝</div>
+
+                        <p className="max-w-3xl text-lg md:text-xl text-white leading-9">
+                            I had an excellent experience at this hospital.
+                            The appointment process was simple and the staff was very friendly.
+                        </p>
+
+                        <div className="w-24 h-[2px] bg-white my-7"></div>
+
+                        <h2 className="text-2xl font-bold text-white">
+                            Emily Davis
                         </h2>
 
-                        <p className="text-primary">General Patient</p>
+                        <p className="text-primary mt-2">
+                            General Patient
+                        </p>
                     </div>
 
-                    <div className="absolute left-5 right-5 top-1/2 flex justify-between -translate-y-1/2">
-                        <a href="#slide2" className="btn btn-circle">❮</a>
-                        <a href="#slide1" className="btn btn-circle">❯</a>
-                    </div>
+                    <a
+                        href="#slide2"
+                        className="btn btn-circle absolute left-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❮
+                    </a>
+
+                    <a
+                        href="#slide1"
+                        className="btn btn-circle absolute right-6 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-none text-white hover:bg-primary hover:text-black"
+                    >
+                        ❯
+                    </a>
                 </div>
 
             </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-3 mt-6">
+                <a href="#slide1" className="w-3 h-3 rounded-full bg-primary"></a>
+                <a href="#slide2" className="w-3 h-3 rounded-full bg-gray-300 hover:bg-primary"></a>
+                <a href="#slide3" className="w-3 h-3 rounded-full bg-gray-300 hover:bg-primary"></a>
+            </div>
+
             {/* doctors  */}
             {/* doctors  */}
-            <h1>doctors</h1>
+            <h1 className='text-4xl font-semibold text-center mt-15'>doctors</h1>
             <div className="carousel carousel-center my-4 lg:my-10 rounded-box max-w-5xl mx-auto flex">
                 {
                     doctors.map(doctor =>
@@ -176,10 +248,10 @@ const AboutUs = () => {
                             {/* Content */}
                             <div className="bg-[#BFD2F8] text-center py-8 px-5">
 
-                                <h2 className="text-3xl font-bold text-[#1F2B6C]">{doctor.name}
+                                <h2 className="text-3xl font-bold text-secondary">{doctor.name}
                                 </h2>
 
-                                <p className="uppercase tracking-[3px] text-[#1F2B6C] mt-2 font-medium">
+                                <p className="uppercase tracking-[3px] text-secondary mt-2 font-medium">
                                     {doctor.specialist}
                                 </p>
 
@@ -284,28 +356,22 @@ const AboutUs = () => {
                         GET IN TOUCH
                     </p>
 
-                    <h2 className="text-5xl font-bold text-[#1F2B6C] mt-2">
+                    <h2 className="text-5xl font-bold text-secondary mt-2">
                         Contact
                     </h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                    {/* Emergency */}
                     <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300">
-
                         <FiPhoneCall size={34} />
-
                         <h2 className="font-bold text-xl mt-6 mb-5">
                             EMERGENCY
                         </h2>
-
-                        <p>(+254) 717 783 146</p>
-                        <p>(+254) 717 783 147</p>
-
+                        <p>01812589426</p>
+                        <p>01887873792</p>
                     </div>
 
-                    {/* Location */}
                     <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300">
 
                         <FiMapPin size={34} />
@@ -314,13 +380,12 @@ const AboutUs = () => {
                             LOCATION
                         </h2>
 
-                        <p>0123 Some Place</p>
-                        <p>9876 Some Country</p>
+                        <p>Mirpur</p>
+                        <p>Dhaka, Bangladesh</p>
 
                     </div>
 
-                    {/* Email */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300bg-[#BFD2F8] rounded-md p-8 text-[#1F2B6C] hover:bg-[#1F2B6C] hover:text-white duration-300">
+                    <div className="bg-btn1  duration-300bg-[#BFD2F8] rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300">
 
                         <FiMail size={34} />
 
@@ -328,23 +393,21 @@ const AboutUs = () => {
                             EMAIL
                         </h2>
 
-                        <p>dnx@gmail.com</p>
-                        <p>medin@gmail.com</p>
+                        <p>medinHospital@gmail.com</p>
+                        <p>emergencyMedin@gmail.com</p>
 
                     </div>
 
                     {/* Working Hours */}
-                    <div className="bg-btn1 rounded-md p-8 text-secondary hover:bg-btn2 hover:text-white duration-300bg-[#BFD2F8] rounded-md p-8 text-[#1F2B6C] hover:bg-[#1F2B6C] hover:text-white duration-300">
+                    <div className="bg-btn1  text-secondary hover:bg-btn2 hover:text-white duration-300bg-[#BFD2F8] rounded-md p-8   duration-300">
 
                         <FiClock size={34} />
 
                         <h2 className="font-bold text-xl mt-6 mb-5">
                             WORKING HOURS
                         </h2>
-
-                        <p>Mon-Sat 09:00-20:00</p>
+                        <p>Sat-Fri 09:00-20:00</p>
                         <p>Sunday Emergency Only</p>
-
                     </div>
 
                 </div>

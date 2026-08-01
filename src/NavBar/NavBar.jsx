@@ -37,7 +37,9 @@ const NavBar = () => {
                     </div>
                     <div className="navbar-end flex justify-end">
                         <input type="text" placeholder="Search" className="input input-bordered w-20 lg:w-54 text-black " />
-                        <NavLink to="/appoinment" className={({isActive})=> isActive ? 'bg-btn3 rounded-3xl text-white hidden lg:flex font-semibold p-2 ml-5': "bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5"}>Appointment</NavLink>
+                        {
+                            user?.role == "patient" && <NavLink to="/appoinment" className={({isActive})=> isActive ? 'bg-btn3 rounded-3xl text-white hidden lg:flex font-semibold p-2 ml-5': "bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5"}>Appointment</NavLink>
+                        }
                         {
                             user ? <NavLink onClick={handleLogOut} className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'>Log out</NavLink> :
                                 <NavLink to="/loginPortal" className='bg-btn1 hover:bg-btn3 rounded-3xl text-secondary hidden lg:flex font-semibold p-2 ml-5'>Login</NavLink>

@@ -39,7 +39,7 @@ const Header = () => {
                         </div>
                         <div>
                             <h1>Location</h1>
-                            <h1 className='text-[#159EEC] '>Dhaka</h1>
+                            <h1 className='text-[#159EEC] '>Mirpur-11, Dhaka</h1>
                         </div>
                     </div>
                 </div>

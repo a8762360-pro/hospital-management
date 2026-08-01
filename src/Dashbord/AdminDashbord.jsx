@@ -1,19 +1,28 @@
-import React from "react";
-import {
-    FaUserMd,
-    FaUsers,
-    FaCalendarCheck,
-    FaNewspaper,
-    FaMoneyBillWave,
-} from "react-icons/fa";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { FaUserMd, FaUsers, FaCalendarCheck, FaNewspaper, FaMoneyBillWave, } from "react-icons/fa";
 
 const AdminDashbord = () => {
+    const [ message, setMessage ] = useState([]);
+    const [ recentAppoinment, setRecentAppoinment ] = useState([])
+    console.log(recentAppoinment)
+    console.log(message)
+    useEffect(() => {
+        axios.get("http://localhost:3000/recentAppoinments")
+            .then(msj => {
+                setRecentAppoinment(msj.data)
+            })
+        axios.get("http://localhost:3000/messages")
+            .then(msj => {
+                setMessage(msj.data)
+            })
+    }, [])
     return (
         <div className="bg-gray-100 min-h-screen p-8 max-w-7xl mx-auto">
             {/* Header */}
             <div className="flex justify-between items-center mb-10">
                 <div>
-                    <h1 className="text-4xl font-bold text-[#1F2B6C]">
+                    <h1 className="text-4xl font-bold text-secondary">
                         Admin Dashboard
                     </h1>
                     <p className="text-gray-500 mt-2">
@@ -22,7 +31,7 @@ const AdminDashbord = () => {
                 </div>
 
                 <img
-                    src="https://i.pravatar.cc/100?img=12"
+                    src="https://tse2.mm.bing.net/th/id/OIP.yYUwl3GDU07Q5J5ttyW9fQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
                     alt=""
                     className="w-14 h-14 rounded-full border-4 border-white shadow"
                 />
@@ -35,7 +44,7 @@ const AdminDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Doctors</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">
+                            <h2 className="text-4xl font-bold text-secondary mt-2">
                                 84
                             </h2>
                         </div>
@@ -50,7 +59,7 @@ const AdminDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Patients</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">
+                            <h2 className="text-4xl font-bold text-secondary mt-2">
                                 1,254
                             </h2>
                         </div>
@@ -65,7 +74,7 @@ const AdminDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Appointments</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">
+                            <h2 className="text-4xl font-bold text-secondary mt-2">
                                 326
                             </h2>
                         </div>
@@ -80,7 +89,7 @@ const AdminDashbord = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-gray-500">Revenue</p>
-                            <h2 className="text-4xl font-bold text-[#1F2B6C] mt-2">
+                            <h2 className="text-4xl font-bold text-secondary mt-2">
                                 $52K
                             </h2>
                         </div>
@@ -98,7 +107,7 @@ const AdminDashbord = () => {
 
                 {/* Recent Appointments */}
                 <div className="lg:col-span-2 bg-white rounded-xl shadow p-6">
-                    <h2 className="text-2xl font-bold text-[#1F2B6C] mb-6">
+                    <h2 className="text-2xl font-bold text-secondary mb-6">
                         Recent Appointments
                     </h2>
 
@@ -113,45 +122,29 @@ const AdminDashbord = () => {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Alomgir</td>
-                                <td>Dr. James Carter</td>
-                                <td>25 Jul</td>
-                                <td>
-                                    <span className="badge badge-warning">
-                                        Pending
-                                    </span>
-                                </td>
-                            </tr>
+                            {
+                                recentAppoinment.map(recApp =>
+                                    <tr key={recApp._id}>
+                                        <td>{recApp.name}</td>
+                                        <td>{recApp.doctor}</td>
+                                        <td>{recApp.date}</td>
+                                        <td>
+                                            <span className="badge badge-error">
+                                                Cancelled
+                                            </span>
+                                        </td>
+                                    </tr>
+                                )
+                            }
 
-                            <tr>
-                                <td>Sakib</td>
-                                <td>Dr. Emily</td>
-                                <td>26 Jul</td>
-                                <td>
-                                    <span className="badge badge-success">
-                                        Approved
-                                    </span>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td>Nusrat</td>
-                                <td>Dr. John</td>
-                                <td>27 Jul</td>
-                                <td>
-                                    <span className="badge badge-error">
-                                        Cancelled
-                                    </span>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                {/* Latest News */}
+                {/* Latest message */}
                 <div className="bg-white rounded-xl shadow p-6">
-                    <h2 className="text-2xl font-bold text-[#1F2B6C] mb-6">
+                    <h2 className="text-2xl font-bold text-secondary mb-6">
                         Latest News
                     </h2>
 
@@ -204,6 +197,53 @@ const AdminDashbord = () => {
 
                     </div>
                 </div>
+
+                {/* message */}
+                <div className="bg-white rounded-2xl p-8 shadow-lg w-full">
+
+                    <h2 className="text-4xl font-bold text-[#1F2B6C] mb-8">
+                        Messages
+                    </h2>
+
+                    <div className="space-y-6">
+
+                        {message.map((message) => (
+
+                            <div
+                                key={message._id}
+                                className="flex items-start gap-5 border-b pb-5"
+                            >
+
+                                <div className="w-14 h-14 rounded-full bg-blue-100 flex justify-center items-center">
+
+                                    <span className="text-2xl">📩</span>
+
+                                </div>
+
+                                <div className="flex-1">
+
+                                    <h3 className="text-xl font-semibold">
+                                        {message.subject}
+                                    </h3>
+
+                                    <p className="text-gray-500">
+                                        {message.name}
+                                    </p>
+
+                                    <p className="text-gray-600 line-clamp-2">
+                                        {message.message}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        ))}
+
+                    </div>
+
+                </div>
+
 
             </div>
         </div>

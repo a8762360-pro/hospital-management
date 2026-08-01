@@ -36,10 +36,10 @@ const Footer = () => {
 
                         <ul className="space-y-3 text-gray-300 flex flex-col">
 
-                            <NavLink to="/appoinment" >Appointment</NavLink>
-                            <NavLink to="/doctors" >Doctors</NavLink>
-                            <NavLink to="/services" >Services</NavLink>
-                            <NavLink to="aboutus" >About Us</NavLink>
+                            <NavLink className="hover:bg-whitei hover:text-gray-400" to="/appoinment" >Appointment</NavLink>
+                            <NavLink className="hover:bg-whitei hover:text-gray-400" to="/doctors" >Doctors</NavLink>
+                            <NavLink className="hover:bg-whitei hover:text-gray-400" to="/services" >Services</NavLink>
+                            <NavLink className="hover:bg-whitei hover:text-gray-400" to="aboutus" >About Us</NavLink>
 
                         </ul>
                     </div>
@@ -54,7 +54,7 @@ const Footer = () => {
                             <p>Call: 01837097197</p>
                             <p>Email: a8762360@gmail.com</p>
                             <p>Address: Mirpur-11, Dhaka</p>
-                            <p>Some country</p>
+                            <p>Bangladesh</p>
                         </div>
                     </div>
 

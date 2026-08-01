@@ -8,12 +8,11 @@ import { AuthContext } from '../AuthContext/AuthContext';
 
 const Appoinment = () => {
     const { user, token } = use(AuthContext);
-    console.log( user)
+    console.log(user)
+
     const handleApponment = (e) => {
         e.preventDefault();
-        // if (!user?.accessToken) {
-        //     return alert("you are not valid user")
-        // }
+        const status = 'pending';
 
         const name = e.target.name.value;
         const email = e.target.email.value;
@@ -26,7 +25,7 @@ const Appoinment = () => {
         const department = e.target.department.value;
         console.log(name, email, number, date, message, time, gender, doctor, department)
         const newAppinment = {
-            name, email, number, date, message, time, gender, doctor, department
+            name, email, number, date, message, time, gender, doctor, department, status
         }
         axios.post('http://localhost:3000/appoinments', newAppinment)
             .then(result => {
@@ -36,9 +35,6 @@ const Appoinment = () => {
             .catch(err => {
                 console.log(err)
             })
-
-
-
     }
     useEffect(() => {
 
@@ -51,7 +47,6 @@ const Appoinment = () => {
 
                 <div className="grid lg:grid-cols-2 gap-8">
 
-                    {/* Left Side */}
                     <div>
 
                         <h2 className="text-5xl font-bold text-secondary">
@@ -66,7 +61,6 @@ const Appoinment = () => {
 
                         <form onSubmit={handleApponment} className="mt-10 overflow-hidden rounded-md shadow-lg">
 
-                            {/* Row 1 */}
                             <div className="grid md:grid-cols-2">
 
                                 <input name='name'
@@ -87,7 +81,6 @@ const Appoinment = () => {
 
                             </div>
 
-                            {/* Row 2 */}
                             <div className="grid md:grid-cols-2">
 
                                 <input name='email'
@@ -126,7 +119,6 @@ const Appoinment = () => {
 
                             </div>
 
-                            {/* Row 4 */}
                             <div className="grid md:grid-cols-2">
 
                                 <div className="relative">
@@ -154,7 +146,6 @@ const Appoinment = () => {
 
                             </div>
 
-                            {/* Message */}
                             <textarea name='message'
                                 rows="6"
                                 placeholder="Message"
@@ -169,7 +160,6 @@ const Appoinment = () => {
 
                     </div>
 
-                    {/* Right Side */}
                     <div className="bg-btn2 text-white rounded-md p-10 shadow-lg">
 
                         <h2 className="text-5xl font-bold mb-10">
@@ -212,11 +202,9 @@ const Appoinment = () => {
                                 <h3 className="text-2xl font-bold">
                                     Emergency
                                 </h3>
-
                                 <p className="text-xl">
                                     (+237) 681-812-255
                                 </p>
-
                             </div>
 
                         </div>
