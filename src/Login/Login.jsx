@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import axios from 'axios';
@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     console.log(role)
-    const { numberPassLogin, user, setUser, setToken } = use(AuthContext);
+    const { numberPassLogin, user, setUser } = useContext(AuthContext);
     console.log(user)
 
     const handleLogin = (e) => {
@@ -18,12 +18,19 @@ const Login = () => {
         const password = e.target.password.value;
         console.log('login', email, password)
 
+        try{
         numberPassLogin(email, password)
             .then(result => {
+                console.log(result)
+                if(result.user){
+                    alert("Login successful")         
+                    const token = result.user.accessToken;
+                    localStorage.setItem("token", token)
                 axios.get(`http://localhost:3000/users/${email}`)
                     .then(res => {
                         const dbUser = res.data
-                        console.log(user)
+                        console.log(dbUser.role)
+                        console.log(dbUser)
                         if (!dbUser) {
                             return alert("User not found")
                         }
@@ -32,10 +39,15 @@ const Login = () => {
                         }
 
                         setUser(dbUser)
-                        navigate("/")
                         e.target.reset();
+                        navigate("/")
                     })
+                }
             })
+        }
+            catch (err) {
+            console.log(err)
+        }
     }
     return (
         <div className='my-30'>

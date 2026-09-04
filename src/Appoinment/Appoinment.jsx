@@ -1,14 +1,19 @@
 import axios from 'axios';
-import React, { use, useEffect } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import {
     FaPhoneAlt,
     FaChevronDown,
 } from "react-icons/fa";
 import { AuthContext } from '../AuthContext/AuthContext';
+import useAxiosSecure from '../hook/UseAxiosSeceure';
 
 const Appoinment = () => {
-    const { user, token } = use(AuthContext);
-    console.log(user)
+    const { user } = use(AuthContext);
+    const [ doctors, setDoctors ] = useState([]);
+    const doctorData = (id) => {
+        console.log(id)
+    }
+    const axiosSeceure = useAxiosSecure();
 
     const handleApponment = (e) => {
         e.preventDefault();
@@ -27,7 +32,7 @@ const Appoinment = () => {
         const newAppinment = {
             name, email, number, date, message, time, gender, doctor, department, status
         }
-        axios.post('http://localhost:3000/appoinments', newAppinment)
+        axiosSeceure.post('http://localhost:3000/appoinments', newAppinment)
             .then(result => {
                 console.log(result.data);
                 alert("your appointment submit to successfully")
@@ -37,7 +42,14 @@ const Appoinment = () => {
             })
     }
     useEffect(() => {
-
+        axiosSeceure.get('http://localhost:3000/doctors')
+            .then(result => {
+                console.log(result.data);
+                setDoctors(result.data);
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
     return (
         <div>
@@ -65,7 +77,7 @@ const Appoinment = () => {
 
                                 <input name='name'
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Patient Name"
                                     className="bg-btn2 text-white placeholder:text-gray-300 border border-white/20 px-5 py-4 outline-none"
                                 />
 
@@ -122,11 +134,21 @@ const Appoinment = () => {
                             <div className="grid md:grid-cols-2">
 
                                 <div className="relative">
-                                    <select name='doctor' className="w-full appearance-none bg-btn2 text-white border border-white/20 px-5 py-4 outline-none">
-                                        <option>Doctor</option>
-                                        <option>Dr. James Carter</option>
-                                        <option>Dr. Sarah Wilson</option>
-                                        <option>Dr. Emily Davis</option>
+                                    {/* onChange ইভেন্টটি এখানে <select> ট্যাগে দিন */}
+                                    <select
+                                        name='doctor'
+                                        onChange={(e) => setDoctor(e.target.value)}
+                                        className="w-full appearance-none bg-btn2 text-white border border-white/20 px-5 py-4 outline-none"
+                                    >
+                                        <option value="">Select Doctor</option>
+
+                                        {
+                                            doctors?.map((d, index) => (
+                                                <option key={d._id || index} value={d.name}>
+                                                    {d.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
 
                                     <FaChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-white pointer-events-none" />

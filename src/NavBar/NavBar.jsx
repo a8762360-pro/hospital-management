@@ -7,6 +7,7 @@ const NavBar = () => {
     console.log(user)
     const handleLogOut = () => {
         logOut();
+        localStorage.removeItem("token");
     }
     const link = <>
         <NavLink to="/" className={({ isActive }) => isActive ? "bg-btn3  px-4 py-2 rounded-md" : "px-4 py-2 hover:bg-btn1 hover:text-secondary rounded-md "}> Home</NavLink>

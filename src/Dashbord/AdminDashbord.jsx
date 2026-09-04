@@ -1,22 +1,61 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { FaUserMd, FaUsers, FaCalendarCheck, FaNewspaper, FaMoneyBillWave, } from "react-icons/fa";
+import React, { use, useEffect, useState } from "react";
+import { FaUserMd, FaUsers, FaCalendarCheck, FaNewspaper, FaMoneyBillWave, FaCheck, FaTimes, } from "react-icons/fa";
+import useAxiosSecure from "../hook/UseAxiosSeceure";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 const AdminDashbord = () => {
+    const axiosSeceure = useAxiosSecure();
     const [ message, setMessage ] = useState([]);
     const [ recentAppoinment, setRecentAppoinment ] = useState([])
-    console.log(recentAppoinment)
-    console.log(message)
+    const [ doctorRequests, setDoctorRequests ] = useState([]);
+    const { user, numberPassLogin , createUser} = use(AuthContext);
+
+    console.log(doctorRequests)
+    console.log(numberPassLogin)
+
     useEffect(() => {
-        axios.get("http://localhost:3000/recentAppoinments")
+        axiosSeceure.get("http://localhost:3000/recentAppoinments")
             .then(msj => {
                 setRecentAppoinment(msj.data)
             })
-        axios.get("http://localhost:3000/messages")
+        axiosSeceure.get("http://localhost:3000/messages")
             .then(msj => {
                 setMessage(msj.data)
             })
+
+        axiosSeceure.get("http://localhost:3000/doctorSignupRequest")
+            .then(res => {
+                setDoctorRequests(res.data);
+            })
+            .catch(err => console.error("Error fetching doctor requests:", err));
     }, [])
+
+
+    const handleApprove = (doctorId) => {
+        axiosSeceure.get(`http://localhost:3000/doctorSignupRequest/${doctorId}`,)
+            .then(res => {
+                console.log(res.data);
+                const newDoctorData = res.data;
+                const email = newDoctorData.email;
+                const password = newDoctorData.password;
+                const role = "doctor";
+                console.log(email, password, role)
+                createUser(email, password)
+                    .then(res => {
+                        const doctor = (res.data)
+                        if (doctor) {
+                            alert("Doctor account created successfully");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
+                // setDoctorRequests(prevRequests => prevRequests.filter(doc => doc._id !== doctorId));
+            })
+            .catch(err => console.error("Error approving doctor request:", err));
+    }
+
     return (
         <div className="bg-gray-100 min-h-screen p-8 max-w-7xl mx-auto">
             {/* Header */}
@@ -104,7 +143,6 @@ const AdminDashbord = () => {
 
             {/* Bottom */}
             <div className="grid lg:grid-cols-3 gap-6 mt-10">
-
                 {/* Recent Appointments */}
                 <div className="lg:col-span-2 bg-white rounded-xl shadow p-6">
                     <h2 className="text-2xl font-bold text-secondary mb-6">
@@ -141,7 +179,6 @@ const AdminDashbord = () => {
                         </tbody>
                     </table>
                 </div>
-
                 {/* Latest message */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <h2 className="text-2xl font-bold text-secondary mb-6">
@@ -200,11 +237,9 @@ const AdminDashbord = () => {
 
                 {/* message */}
                 <div className="bg-white rounded-2xl p-8 shadow-lg w-full">
-
                     <h2 className="text-4xl font-bold text-[#1F2B6C] mb-8">
                         Messages
                     </h2>
-
                     <div className="space-y-6">
 
                         {message.map((message) => (
@@ -241,7 +276,119 @@ const AdminDashbord = () => {
                         ))}
 
                     </div>
+                </div>
 
+                {/* doctor registration requests */}
+                <div className="p-6 bg-slate-50 min-h-screen">
+                    <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+
+                        {/* Header */}
+                        <div className="flex justify-between items-center mb-6 pb-4 border-b">
+                            <div>
+                                <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                                    <FaUserMd className="text-[#159EEC]" /> Doctor Registration Requests
+                                </h2>
+                                <p className="text-sm text-gray-500 mt-1">
+                                    Review and verify pending doctor accounts before approval.
+                                </p>
+                            </div>
+                            <span className="bg-[#159EEC]/10 text-[#159EEC] font-semibold text-sm px-4 py-1.5 rounded-full">
+                                {/* Pending Requests: {doctorRequests.length} */}
+                            </span>
+                        </div>
+
+                        {/* Table Structure */}
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-gray-600 text-sm font-semibold uppercase">
+                                        <th className="p-4 rounded-l-lg">Doctor Info</th>
+                                        <th className="p-4">Specialization</th>
+                                        <th className="p-4">BMDC & Degree</th>
+                                        <th className="p-4">Workplace & Fee</th>
+                                        <th className="p-4 text-center rounded-r-lg">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100 text-sm">
+                                    {doctorRequests?.map((doctor) => (
+                                        <tr key={doctor._id} className="hover:bg-slate-50/80 transition-colors">
+
+                                            {/* Name, Email, Image */}
+                                            <td className="p-4">
+                                                <div className="flex items-center gap-3">
+                                                    <img
+                                                        src={doctor.image || "https://via.placeholder.com/150"}
+                                                        alt={doctor.name}
+                                                        className="w-12 h-12 rounded-full object-cover border"
+                                                    />
+                                                    <div>
+                                                        <p className="font-semibold text-gray-800">{doctor.name}</p>
+                                                        <p className="text-xs text-gray-500">{doctor.email}</p>
+                                                        <p className="text-xs text-gray-500">{doctor.number}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            {/* Department & Experience */}
+                                            <td className="p-4">
+                                                <span className="bg-blue-50 text-[#159EEC] font-medium px-2.5 py-1 rounded text-xs border border-blue-100">
+                                                    {doctor.department}
+                                                </span>
+                                                <p className="text-xs text-gray-500 mt-1.5">
+                                                    Exp: <span className="font-medium text-gray-700">{doctor.experience} Years</span>
+                                                </p>
+                                            </td>
+
+                                            {/* BMDC & Degree */}
+                                            <td className="p-4">
+                                                <p className="font-medium text-gray-800">{doctor.degree}</p>
+                                                <p className="text-xs text-gray-500 mt-0.5">
+                                                    BMDC: <span className="font-mono text-gray-700">{doctor.bmdcRegNo}</span>
+                                                </p>
+                                            </td>
+
+                                            {/* Workplace & Fee */}
+                                            <td className="p-4">
+                                                <p className="text-gray-800">{doctor.workplace}</p>
+                                                <p className="text-xs text-emerald-600 font-semibold mt-0.5">
+                                                    Fee: ৳{doctor.consultationFee}
+                                                </p>
+                                            </td>
+
+                                            {/* Action Buttons */}
+                                            <td className="p-4">
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <button
+                                                        onClick={() => handleApprove(doctor._id)}
+                                                        className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm"
+                                                        title="Approve Request"
+                                                    >
+                                                        <FaCheck /> Accept
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleReject(doctor._id)}
+                                                        className="flex items-center gap-1 bg-rose-500 hover:bg-rose-600 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm"
+                                                        title="Reject Request"
+                                                    >
+                                                        <FaTimes /> Reject
+                                                    </button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
+                            {/* Empty State */}
+                            {/* {doctorRequests.length === 0 && (
+                                <div className="text-center py-10 text-gray-500">
+                                    No pending registration requests found.
+                                </div>
+                            )} */}
+                        </div>
+
+                    </div>
                 </div>
 
 

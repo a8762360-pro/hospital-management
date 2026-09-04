@@ -3,16 +3,18 @@ import { FaCalendarCheck, FaFileMedical, FaUserInjured, FaNotesMedical, FaClock 
 import { AuthContext } from "../AuthContext/AuthContext";
 import axios from "axios";
 import { FaTrash } from "react-icons/fa";
+import useAxiosSecure from "../hook/UseAxiosSeceure";
 
 
 const PatientDashbord = () => {
+    const axiosSeceure = useAxiosSecure();
     const [ appointments, setAppoinments ] = useState([]);
     console.log(appointments)
     const { user } = use(AuthContext);
-    console.log(user)
+    console.log(user.image)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/appoinments/${user.email}`)
+        axiosSeceure.get(`http://localhost:3000/appoinments/${user.email}`)
             .then(res => {
                 console.log(res.data)
                 setAppoinments(res.data)
@@ -25,7 +27,7 @@ const PatientDashbord = () => {
             <div className="flex justify-between items-center mb-10">
                 <div>
                     <h1 className="text-4xl font-bold text-secondary">Patient Dashboard</h1>
-                    <p className="text-gray-500 mt-2">Welcome back, {user.name}</p>
+                    <p className="text-gray-500 mt-2">Welcome back, <span className="font-bold text-black uppercase">{user.name} </span></p>
                 </div>
 
                 {/* <img src={user.patientImage} alt="" className="w-14 h-14 rounded-full  shadow" /> */}
@@ -96,7 +98,7 @@ const PatientDashbord = () => {
                         <tbody>
                             {
 
-                                appointments.map(appoinment => <tr>
+                                appointments.map(appoinment => <tr key={appoinment._id}>
                                     <td>{appoinment.doctor}</td>
                                     <td>{appoinment.date}</td>
                                     <td>{appoinment.time}</td>
@@ -105,8 +107,6 @@ const PatientDashbord = () => {
                                     
                                 </tr>)}
 
-
-
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +114,7 @@ const PatientDashbord = () => {
                 {/* Patient Profile */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <div className="flex flex-col items-center">
-                        <img src={user.patientImage
+                        <img src={user.image
                         } alt="" className="w-28 h-28 rounded-full border border-blue-100" />
 
                         <h2 className="text-2xl font-bold text-secondary mt-5">{user.name}</h2>
@@ -123,7 +123,7 @@ const PatientDashbord = () => {
                         <div className="mt-8 w-full space-y-4">
                             <div className="flex justify-between">
                                 <span className="text-gray-500">Age</span>
-                                <span className="font-semibold">{user.patientAge} Years</span>
+                                <span className="font-semibold">{user.age} Years</span>
                             </div>
 
                             <div className="flex justify-between">
@@ -133,7 +133,7 @@ const PatientDashbord = () => {
 
                             <div className="flex justify-between">
                                 <span className="text-gray-500">Gender</span>
-                                <span className="font-semibold">{user.patientGender}</span>
+                                <span className="font-semibold">{user.gender}</span>
                             </div>
 
                             <button className="w-full mt-6 bg-[#1F2B6C] text-white py-3 rounded-lg hover:bg-[#159EEC] duration-300">
