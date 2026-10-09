@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase/Firebase.config';
 import { AuthContext } from './AuthContext';
 import axios from 'axios';
-// import auth from '../Firebase/Firebase.config'
 
 const AuthProvider = ({ children }) => {
     // const [ user, setUser ] = useState(null);
@@ -58,6 +57,7 @@ const AuthProvider = ({ children }) => {
     return (
         <AuthContext value={AuthValue}>
             {children}
+            {/* <ChatbotWidget></ChatbotWidget> */}
         </AuthContext>
     );
 };

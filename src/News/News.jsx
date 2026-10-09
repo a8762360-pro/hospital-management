@@ -27,7 +27,7 @@ const News = () => {
                 <div className="lg:col-span-3 max-w-3xl ">
 
                     {
-                        allNews.map(news => <div className="bg-white rounded-lg m-5 overflow-hidden shadow hover:shadow-xl duration-300">
+                        allNews.map(news => <div key={news._id} className="bg-white rounded-lg m-5 overflow-hidden shadow hover:shadow-xl duration-300">
 
                             {/* Image */}
                             <img

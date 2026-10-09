@@ -23,6 +23,10 @@ import Login from './Login/Login.jsx';
 import LoginPortal from './Login/LoginPortal.jsx';
 import Dashbord from './Dashbord/Dashbord.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
+import Appoinments from './Dashbord/AdminDashbord/Appoinments/Appoinments.jsx';
+import Doctor from './Doctors/Doctor.jsx';
+import AllDoctor from './Dashbord/AdminDashbord/Doctor/AllDoctor.jsx';
+import AllPatients from './Dashbord/AdminDashbord/Patients/AllPatients.jsx';
 
 const router = createBrowserRouter([
     {
@@ -85,9 +89,28 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Dashbord></Dashbord>
                 </PrivateRoute>
+            },
+            {
+                path: "/appoinments",
+                element: <PrivateRoute>
+                    <Appoinments></Appoinments>
+                </PrivateRoute>
+            },
+            {
+                path: "allDoctor",
+                element: <PrivateRoute>
+                    <AllDoctor></AllDoctor>
+                </PrivateRoute>
+            },
+            {
+                path: "AllPatients",
+                element: <PrivateRoute>
+                    <AllPatients></AllPatients>
+                </PrivateRoute>
             }
         ]
     },
+    
     // {
     //     path: "/dashbord",
     //     element: <Dashbord></Dashbord>,

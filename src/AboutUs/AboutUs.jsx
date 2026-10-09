@@ -64,7 +64,7 @@ const AboutUs = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-10 mb-10">
 
                             {
-                                services.map(ser => <div className='flex items-center gap-2'>
+                                services.map(ser => <div key={ser._id} className='flex items-center gap-2'>
                                     <div className='bg-btn3 w-4 p-2 rounded-full'></div>
                                     <h1> {ser.title}</h1>
                                 </div>)

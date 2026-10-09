@@ -2,19 +2,23 @@ import axios from "axios";
 import React, { use, useEffect, useState } from "react";
 import { FaCalendarCheck, FaUserInjured, FaClock, FaNotesMedical, FaStethoscope } from "react-icons/fa";
 import { AuthContext } from "../AuthContext/AuthContext";
+import useAxiosSecure from "../hook/UseAxiosSeceure";
 
 const DoctorDashbord = () => {
     const { user } = use(AuthContext);
+    console.log(user)
     const today = new Date();
     console.log(user.experience)
     const [ appoinments, setAppoinments ] = useState([]);
     console.log(appoinments)
-    useEffect(() => {
-        axios.get('http://localhost:3000/appoinments')
-            .then(data => {
-                setAppoinments(data.data)
-            })
 
+    const axiosSeceure = useAxiosSecure();
+    useEffect(() => {
+        axiosSeceure.get(`/appoinments/${user.name}`)
+            .then(res => {
+                setAppoinments(res.data);
+            })
+            .catch(err => console.error("Error fetching appointments:", err));
     }, [])
     return (
         <div className="bg-gray-100 min-h-screen max-w-7xl mx-auto p-8">
@@ -118,7 +122,7 @@ const DoctorDashbord = () => {
                 {/* Doctor Profile */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <div className="flex flex-col items-center">
-                        <img src={user.Image} alt="" className="w-28 h-28 rounded-full  " />
+                        <img src={user.image} alt="" className="w-28 h-28 rounded-full  " />
 
                         <h2 className="text-2xl font-bold text-secondary mt-5">Dr.{user.name}</h2>
                         <p className="text-gray-500">Cardiology Specialist</p>

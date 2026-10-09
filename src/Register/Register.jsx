@@ -4,6 +4,7 @@ import { use, useState } from "react";
 import axios from "axios";
 
 const Register = () => {
+
     const navigate = useNavigate();
     const { createUser, setUser } = use(AuthContext);
     const [role, setRole] = useState("");
@@ -59,6 +60,9 @@ const Register = () => {
                 .catch(err => alert(err.message));
         } 
         else if (role === 'doctor') {
+
+            axios.get('')
+
             const degree = form.degree.value;
             const bmdcRegNo = form.bmdcRegNo.value;
             const workplace = form.workplace.value;
@@ -83,6 +87,8 @@ const Register = () => {
                 experience,
                 status: "pending" 
             };
+
+      
 
             axios.post('http://localhost:3000/doctorSignupRequest', doctorData)
                 .then(res => {
@@ -188,7 +194,7 @@ const Register = () => {
                 {/* Footer */}
                 <div className="pb-8 text-center">
                     <p className="text-gray-600">Already have an account?</p>
-                    <Link to="/login" className="text-[#159EEC] font-semibold hover:underline">
+                    <Link to="/loginPortal" className="text-[#159EEC] font-semibold hover:underline">
                         Login Here
                     </Link>
                 </div>

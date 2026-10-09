@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { AuthContext } from '../AuthContext/AuthContext';
 import axios from 'axios';
+import { AuthContext } from '../AuthContext/AuthContext';
 
 const Login = () => {
     const { role } = useParams();
@@ -37,12 +37,18 @@ const Login = () => {
                         if (dbUser.role !== role) {
                             return alert("Wrong login portal");
                         }
+                        navigate("/")
 
                         setUser(dbUser)
                         e.target.reset();
-                        navigate("/")
+                    })
+                    .catch(err => {
+                        console.log(err)
                     })
                 }
+            })
+            .catch(err=> {
+                console.log(err)
             })
         }
             catch (err) {

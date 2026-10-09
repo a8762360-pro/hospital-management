@@ -119,11 +119,11 @@ const Appoinment = () => {
 
                                 <div className="relative">
                                     <select name='time' className="w-full appearance-none bg-btn2 text-white border border-white/20 px-5 py-4 outline-none">
-                                        <option>Time</option>
-                                        <option>09:00 AM</option>
-                                        <option>10:00 AM</option>
-                                        <option>11:00 AM</option>
-                                        <option>12:00 PM</option>
+                                        <option className='bg-yellow-100 text-black'>Time</option>
+                                        <option className='bg-yellow-100 text-black'>09:00 AM</option>
+                                        <option className='bg-yellow-100 text-black'>10:00 AM</option>
+                                        <option className='bg-yellow-100 text-black'>11:00 AM</option>
+                                        <option className='bg-yellow-100 text-black'>12:00 PM</option>
                                     </select>
 
                                     <FaChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
@@ -137,14 +137,14 @@ const Appoinment = () => {
                                     {/* onChange ইভেন্টটি এখানে <select> ট্যাগে দিন */}
                                     <select
                                         name='doctor'
-                                        onChange={(e) => setDoctor(e.target.value)}
+                                        onChange={(e) => setDoctors(e.target.value)}
                                         className="w-full appearance-none bg-btn2 text-white border border-white/20 px-5 py-4 outline-none"
                                     >
-                                        <option value="">Select Doctor</option>
+                                        <option className=']' value="">Select Doctor</option>
 
                                         {
                                             doctors?.map((d, index) => (
-                                                <option key={d._id || index} value={d.name}>
+                                                <option className='bg-yellow-100 text-black' key={d._id || index} value={d.name}>
                                                     {d.name}
                                                 </option>
                                             ))
@@ -156,11 +156,11 @@ const Appoinment = () => {
 
                                 <div className="relative">
                                     <select name='department' className="w-full appearance-none bg-btn2 text-white border border-white/20 px-5 py-4 outline-none">
-                                        <option>Department</option>
-                                        <option>Cardiology</option>
-                                        <option>Neurology</option>
-                                        <option>Dental</option>
-                                        <option>Orthopedic</option>
+                                        <option className='bg-yellow-100 text-black'>Department</option>
+                                        <option className='bg-yellow-100 text-black'>Cardiology</option>
+                                        <option className='bg-yellow-100 text-black'>Neurology</option>
+                                        <option className='bg-yellow-100 text-black'>Dental</option>
+                                        <option className='bg-yellow-100 text-black'>Orthopedic</option>
                                     </select>
 
                                     <FaChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
@@ -225,7 +225,7 @@ const Appoinment = () => {
                                     Emergency
                                 </h3>
                                 <p className="text-xl">
-                                    (+237) 681-812-255
+                                    01812589426 / 018812589426
                                 </p>
                             </div>
 

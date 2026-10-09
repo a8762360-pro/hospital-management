@@ -1,10 +1,11 @@
 import React, { use } from 'react';
 import { Outlet } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
-import AdminDashbord from './AdminDashbord';
+// import AdminDashbord from './AdminDashbord';
 import StaffDashbord from './StaffDashbord';
 import PatientDashbord from './PatientDashbord';
 import DoctorDashbord from './DoctorDashbord';
+import AdminDashbord from './AdminDashbord/AdminDashbord';
 
 const Dashbord = () => {
     const {user} = use(AuthContext);

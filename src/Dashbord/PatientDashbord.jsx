@@ -114,7 +114,7 @@ const PatientDashbord = () => {
                 {/* Patient Profile */}
                 <div className="bg-white rounded-xl shadow p-6">
                     <div className="flex flex-col items-center">
-                        <img src={user.image
+                        <img src={user.image || 'https://i1.sndcdn.com/avatars-yOlevbPJzMuZHSRS-JnWhRQ-t1080x1080.jpg'
                         } alt="" className="w-28 h-28 rounded-full border border-blue-100" />
 
                         <h2 className="text-2xl font-bold text-secondary mt-5">{user.name}</h2>
