@@ -7,7 +7,7 @@ const Register = () => {
 
     const navigate = useNavigate();
     const { createUser, setUser } = use(AuthContext);
-    const [role, setRole] = useState("");
+    const [ role, setRole ] = useState("");
 
     const register = (e) => {
         e.preventDefault();
@@ -22,6 +22,7 @@ const Register = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
 
+
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
             return;
@@ -34,6 +35,7 @@ const Register = () => {
                 name,
                 email,
                 number,
+                password,
                 image,
                 age,
                 gender,
@@ -45,9 +47,8 @@ const Register = () => {
             createUser(email, password)
                 .then(result => {
                     const createdUser = result.user;
-                    createdUser.phoneNumber = number;
-                    setUser(createdUser);
-
+                    // createdUser.phoneNumber = number;
+                    // setUser(createdUser);
                     axios.post('http://localhost:3000/users', patientData)
                         .then(res => {
                             console.log(res.data);
@@ -56,9 +57,10 @@ const Register = () => {
                             navigate('/login/patient');
                         })
                         .catch(err => console.error("Database Error:", err));
+
                 })
                 .catch(err => alert(err.message));
-        } 
+        }
         else if (role === 'doctor') {
 
             axios.get('')
@@ -85,16 +87,13 @@ const Register = () => {
                 consultationFee,
                 department,
                 experience,
-                status: "pending" 
+                status: "pending"
             };
-
-      
-
             axios.post('http://localhost:3000/doctorSignupRequest', doctorData)
                 .then(res => {
                     console.log(res.data);
                     alert("Doctor Signup Request Sent Successfully!");
-                    e.target.reset(); 
+                    e.target.reset();
                     navigate('/login/doctor');
                 })
                 .catch(err => console.error("Database Error:", err));
@@ -122,7 +121,7 @@ const Register = () => {
                     <input name="number" required type="tel" placeholder="Phone Number" className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]" />
                     <input name="Image" required type="text" placeholder="Image URL" className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]" />
                     <input name="age" required type="number" placeholder="Age" className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]" />
-                    
+
                     <select name="gender" required className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]">
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
@@ -140,7 +139,7 @@ const Register = () => {
                         <>
                             <input name="degree" required type="text" placeholder="Medical Degree (e.g., MBBS, FCPS)" className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]" />
                             <input name="bmdcRegNo" required type="text" placeholder="BMDC Registration Number" className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]" />
-                            
+
                             <select name="department" required className="w-full border rounded-lg px-5 py-4 outline-none focus:border-[#159EEC]">
                                 <option value="">Select Specialization / Department</option>
                                 <option value="Cardiology">Cardiology</option>
